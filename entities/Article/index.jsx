@@ -22,11 +22,15 @@ const Article = (props) => {
     setDate(formatDateTime(post.published_at));
   }, []);
 
+  const cleanedDescription = post.description
+    ? post.description.replace(/\s+/g, ' ').trim()
+    : post.body.replace(/\s+/g, ' ').trim();
+
   return (
     <>
       <Head>
         <title>{post.meta_title}</title>
-        <meta name="description" content={`${post.description}`} />
+        <meta name="description" content={`${cleanedDescription}`} />
         <meta name="image" content={`${baseUrl}/${post.image}`} />
 
         <link rel="canonical" href={`https://crypto-host.net/${directory}/${post.slug}`} />
@@ -34,7 +38,7 @@ const Article = (props) => {
         <meta property="og:site_name" content="CRYPTOHOST" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.meta_title} />
-        <meta property="og:description" content={`${post.description}`} />
+        <meta property="og:description" content={`${cleanedDescription}`} />
         <meta property="og:url" content={`https://crypto-host.net/${directory}/${post.slug}`} />
         <meta property="og:image" content={`${baseUrl}/${post.image}`} />
         <meta property="og:image:secure_url" content={`${baseUrl}/${post.image}`} />
