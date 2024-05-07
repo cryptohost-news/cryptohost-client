@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 
 import Preloader from '@/shared/ui/Preloader';
 import store from '@/slices';
+import Head from "next/head";
 
 const App = (props) => {
   const { Component, pageProps } = props;
@@ -31,6 +32,14 @@ const App = (props) => {
 
   return (
     <Provider store={store}>
+      <Head>
+        <meta name="format-detection" content="telephone=no" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+        />
+        {/*<link rel="icon" href="/favicon.ico" />*/}
+      </Head>
       <Component {...pageProps} />
       {loading && <Preloader isGlobal={true} />}
     </Provider>
