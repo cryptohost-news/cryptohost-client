@@ -1,7 +1,7 @@
 import cl from 'classnames';
 import Head from 'next/head';
 import Link from 'next/link';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch } from 'react-redux';
 
 import { baseUrl } from '@/routes';
@@ -15,8 +15,12 @@ import styles from './index.module.scss';
 
 const Article = (props) => {
   const { className, post, directory } = props;
-  const date = formatDateTime(post.published_at);
   const dispatch = useDispatch();
+  const [date, setDate] = useState(null);
+
+  useEffect(() => {
+    setDate(formatDateTime(post.published_at));
+  }, []);
 
   return (
     <>
