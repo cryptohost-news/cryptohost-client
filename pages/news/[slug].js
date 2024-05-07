@@ -67,7 +67,7 @@ export async function getStaticProps(context) {
   const post = await loadCurrentPost(slug);
   const { posts: sameCategoryPosts } = await loadPosts(1, POSTS_TO_LOAD, [post.category_id], [post.id]);
 
-  console.log('sameCategoryPosts', sameCategoryPosts);
+  // console.log('sameCategoryPosts', sameCategoryPosts);
 
   return {
     props: {

@@ -21,9 +21,24 @@ const Privacy = () => {
         <title>Политика приватности</title>
         <meta
           name="description"
-          content="Crypto-host - все, что нужно знать о блокчейн и криптовалютах простыми словами. Обучающие статьи для новичков, свежие новости, обзоры проектов и другое!"
+          content="CRYPTOHOST — все, что нужно знать о блокчейн и криптовалютах простыми словами. Обучающие статьи для новичков, свежие новости, обзоры проектов и другое!"
         />
         <meta name="image" content="/logo.png" />
+
+        <link rel="canonical" href="https://crypto-host.net/privacy" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="CRYPTOHOST" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="CRYPTOHOST — приватность" />
+        <meta
+          property="og:description"
+          content="CRYPTOHOST — все, что нужно знать о блокчейн и криптовалютах простыми словами. Обучающие статьи для новичков, свежие новости, обзоры проектов и другое!"
+        />
+        <meta property="og:url" content="https://crypto-host.net/privacy" />
+        <meta property="og:image" content="https://crypto-host.net/logo.png" />
+        <meta property="og:image:secure_url" content="https://crypto-host.net/logo.png" />
+        <meta property="og:image:width" content="640" />
+        <meta property="og:image:height" content="640" />
       </Head>
       <Layout>
         <Breadcrumbs paths={paths}></Breadcrumbs>
