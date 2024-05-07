@@ -59,7 +59,7 @@ const Article = (props) => {
           )}
           {date}
         </div>
-        <Link href={`${directory}/${post.slug}`}>
+        <Link href={post.slug}>
           <PixelizedImg
             className={styles.articleImg}
             src={`${baseUrl}/${post.image}`}
