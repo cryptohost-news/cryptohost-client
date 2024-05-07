@@ -30,7 +30,7 @@ const CurrentPost = (props) => {
     <Layout>
       <Breadcrumbs paths={paths}></Breadcrumbs>
       <Section noTopPadding={true}>
-        <Article post={post} directory={'activities'}></Article>
+        <Article post={post} directory={'news'}></Article>
       </Section>
       <Section>
         <Title color={'purple'}>Может быть интересно</Title>
