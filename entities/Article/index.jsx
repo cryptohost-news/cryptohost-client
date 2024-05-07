@@ -1,7 +1,7 @@
 import cl from 'classnames';
 import Head from 'next/head';
 import Link from 'next/link';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { baseUrl } from '@/routes';
@@ -35,7 +35,7 @@ const Article = (props) => {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.meta_title} />
         <meta property="og:description" content={`${post.description}`} />
-        <meta property="og:url" content={`https://crypto-host.net/news/${post.slug}`} />
+        <meta property="og:url" content={`https://crypto-host.net/${directory}/${post.slug}`} />
         <meta property="og:image" content={`${baseUrl}/${post.image}`} />
         <meta property="og:image:secure_url" content={`${baseUrl}/${post.image}`} />
         <meta property="og:image:width" content="800" />
