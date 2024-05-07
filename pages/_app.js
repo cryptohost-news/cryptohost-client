@@ -4,13 +4,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 
 import Preloader from '@/shared/ui/Preloader';
 import store from '@/slices';
-import Head from "next/head";
 
 const App = (props) => {
   const { Component, pageProps } = props;
@@ -38,7 +38,6 @@ const App = (props) => {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
         />
-        {/*<link rel="icon" href="/favicon.ico" />*/}
       </Head>
       <Component {...pageProps} />
       {loading && <Preloader isGlobal={true} />}
