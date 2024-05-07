@@ -29,7 +29,7 @@ const Article = (props) => {
         <meta name="description" content={`${post.description}`} />
         <meta name="image" content={`${baseUrl}/${post.image}`} />
 
-        <link rel="canonical" href={`${baseUrl}/${post.slug}`} />
+        <link rel="canonical" href={`https://crypto-host.net/${directory}/${post.slug}`} />
         <meta property="og:locale" content="ru_RU" />
         <meta property="og:site_name" content="CRYPTOHOST" />
         <meta property="og:type" content="article" />
