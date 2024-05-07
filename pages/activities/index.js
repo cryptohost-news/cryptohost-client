@@ -1,8 +1,8 @@
-import axios from 'axios';
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import loadActivities from '@/app/servises/activities/loadActivities';
 import MainPost from '@/entities/MainPost';
 import Post from '@/entities/Post';
 import Breadcrumbs from '@/features/Breadcrumbs';
@@ -17,7 +17,6 @@ import { addActivities, setActivities, setLoadedCount } from '@/slices/activitie
 import Subscribe from '@/widgets/Subscribe';
 
 import styles from './styles.module.scss';
-import loadActivities from "@/app/servises/activities/loadActivities";
 
 const LOAD_MORE_STEP = 6;
 
@@ -33,7 +32,7 @@ const Activities = (props) => {
   useEffect(() => {
     dispatch(setActivities({ activities: initialActivities, total }));
     dispatch(setLoadedCount(LOAD_MORE_STEP + 1));
-  }, [dispatch, initialActivities]);
+  }, [dispatch, initialActivities, total]);
 
   const { activities, total: totalActivities, loaded } = useSelector((state) => state.activitiesData);
   const mainActivity = activities[0] || initialActivities[0];
@@ -51,7 +50,10 @@ const Activities = (props) => {
     <>
       <Head>
         <title>Криптоактивности</title>
-        <meta name="description" content="Crypto-host - все, что нужно знать о блокчейн и криптовалютах простыми словами. Обучающие статьи для новичков, свежие новости, обзоры проектов и другое!" />
+        <meta
+          name="description"
+          content="Crypto-host - все, что нужно знать о блокчейн и криптовалютах простыми словами. Обучающие статьи для новичков, свежие новости, обзоры проектов и другое!"
+        />
         <meta name="image" content="/logo.png" />
       </Head>
       <Layout>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import routes from '@/routes';
 
 const loadActivities = async (page, pageSize, excludeIds = []) => {

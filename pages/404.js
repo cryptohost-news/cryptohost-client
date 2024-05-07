@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Section from '@/shared/ui/Section';
-import NotFoundBlock from "@/shared/ui/NotFoundBlock";
 import Layout from '@/shared/ui/Layout';
+import NotFoundBlock from '@/shared/ui/NotFoundBlock';
+import Section from '@/shared/ui/Section';
 
 const NotFound = () => {
   return (

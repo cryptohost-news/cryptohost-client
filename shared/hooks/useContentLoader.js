@@ -2,8 +2,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import routes from '@/routes';
 import { showNotification } from '@/shared/lib/userNotifications';
-import routes from "@/routes";
 
 const useContentLoader = (entityName, pathName, itemsPerPage, setLoadedCount, addEntities, additionalParams = {}) => {
   const { loaded } = useSelector((state) => state[`${entityName}Data`]);

@@ -6,16 +6,13 @@
 class Pixelit {
   constructor(config = {}) {
     //target for canvas
-    this.drawto = config.to || document.getElementById("pixelitcanvas") || document.querySelector('[data-pixelit]');
+    this.drawto = config.to || document.getElementById('pixelitcanvas') || document.querySelector('[data-pixelit]');
     //origin of uploaded image/src img
-    this.drawfrom = config.from || document.getElementById("pixelitimg");
+    this.drawfrom = config.from || document.getElementById('pixelitimg');
     //hide image element
     this.hideFromImg();
     //range between 0 to 100
-    this.scale =
-      config.scale && config.scale > 0 && config.scale <= 50
-        ? config.scale * 0.01
-        : 8 * 0.01;
+    this.scale = config.scale && config.scale > 0 && config.scale <= 50 ? config.scale * 0.01 : 8 * 0.01;
     this.palette = config.palette || [
       [140, 143, 174],
       [88, 69, 99],
@@ -36,15 +33,15 @@ class Pixelit {
     ];
     this.maxHeight = config.maxHeight;
     this.maxWidth = config.maxWidth;
-    this.ctx = this.drawto.getContext("2d");
+    this.ctx = this.drawto.getContext('2d');
     //save latest converted colors
     this.endColorStats = {};
   }
 
   /** hide from image */
   hideFromImg() {
-    this.drawfrom.style.visibility = "hidden";
-    this.drawfrom.style.position = "fixed";
+    this.drawfrom.style.visibility = 'hidden';
+    this.drawfrom.style.position = 'fixed';
     this.drawfrom.style.top = 0;
     this.drawfrom.style.left = 0;
     return this;
@@ -203,15 +200,15 @@ class Pixelit {
     let scaledH = this.drawto.height * this.scale;
 
     //make temporary canvas to make new scaled copy
-    const tempCanvas = document.createElement("canvas");
+    const tempCanvas = document.createElement('canvas');
 
     // Set temp canvas width/height & hide (fixes higher scaled cutting off image bottom)
     tempCanvas.width = this.drawto.width;
     tempCanvas.height = this.drawto.height;
-    tempCanvas.style.visibility = "hidden";
-    tempCanvas.style.position = "fixed";
-    tempCanvas.style.top = "0";
-    tempCanvas.style.left = "0";
+    tempCanvas.style.visibility = 'hidden';
+    tempCanvas.style.position = 'fixed';
+    tempCanvas.style.top = '0';
+    tempCanvas.style.left = '0';
 
     //corner case of bigger images, increase the temporary canvas size to fit everything
     if (this.drawto.width > 900 || this.drawto.height > 900) {
@@ -224,7 +221,7 @@ class Pixelit {
       tempCanvas.height = Math.max(scaledW, scaledH) + 50;
     }
     // get the context
-    const tempContext = tempCanvas.getContext("2d");
+    const tempContext = tempCanvas.getContext('2d');
     // draw the image into the canvas
     tempContext.drawImage(this.drawfrom, 0, 0, scaledW, scaledH);
     document.body.appendChild(tempCanvas);
@@ -238,23 +235,15 @@ class Pixelit {
     if (this.drawfrom.naturalWidth > 300) {
       finalWidth +=
         this.drawfrom.naturalWidth > this.drawfrom.naturalHeight
-          ? parseInt(
-          this.drawfrom.naturalWidth / (this.drawfrom.naturalWidth * this.scale)
-        ) / 1.5
-          : parseInt(
-            this.drawfrom.naturalWidth / (this.drawfrom.naturalWidth * this.scale)
-          );
+          ? parseInt(this.drawfrom.naturalWidth / (this.drawfrom.naturalWidth * this.scale)) / 1.5
+          : parseInt(this.drawfrom.naturalWidth / (this.drawfrom.naturalWidth * this.scale));
     }
     let finalHeight = this.drawfrom.naturalHeight;
     if (this.drawfrom.naturalHeight > 300) {
       finalHeight +=
         this.drawfrom.naturalHeight > this.drawfrom.naturalWidth
-          ? parseInt(
-          this.drawfrom.naturalHeight / (this.drawfrom.naturalHeight * this.scale)
-        ) / 1.5
-          : parseInt(
-            this.drawfrom.naturalHeight / (this.drawfrom.naturalHeight * this.scale)
-          );
+          ? parseInt(this.drawfrom.naturalHeight / (this.drawfrom.naturalHeight * this.scale)) / 1.5
+          : parseInt(this.drawfrom.naturalHeight / (this.drawfrom.naturalHeight * this.scale));
     }
     //draw to final canvas
     //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
@@ -267,7 +256,7 @@ class Pixelit {
       0,
       0,
       finalWidth, //+ Math.max(24, 25 * this.scale),
-      finalHeight //+ Math.max(24, 25 * this.scale)
+      finalHeight, //+ Math.max(24, 25 * this.scale)
     );
     //remove temp element
     tempCanvas.remove();
@@ -306,11 +295,7 @@ class Pixelit {
       for (var x = 0; x < imgPixels.width; x++) {
         var i = y * 4 * imgPixels.width + x * 4;
         //var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
-        const finalcolor = this.similarColor([
-          imgPixels.data[i],
-          imgPixels.data[i + 1],
-          imgPixels.data[i + 2],
-        ]);
+        const finalcolor = this.similarColor([imgPixels.data[i], imgPixels.data[i + 1], imgPixels.data[i + 2]]);
         imgPixels.data[i] = finalcolor[0];
         imgPixels.data[i + 1] = finalcolor[1];
         imgPixels.data[i + 2] = finalcolor[2];
@@ -326,8 +311,8 @@ class Pixelit {
    */
   resizeImage() {
     //var ctx = canvas.getContext("2d")
-    const canvasCopy = document.createElement("canvas");
-    const copyContext = canvasCopy.getContext("2d");
+    const canvasCopy = document.createElement('canvas');
+    const copyContext = canvasCopy.getContext('2d');
     let ratio = 1.0;
 
     //if none defined skip
@@ -358,7 +343,7 @@ class Pixelit {
       0,
       0,
       this.drawto.width,
-      this.drawto.height
+      this.drawto.height,
     );
 
     return this;
@@ -384,18 +369,15 @@ class Pixelit {
    */
 
   saveImage() {
-    const link = document.createElement("a");
-    link.download = "pxArt.png";
-    link.href = this.drawto
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream");
-    document.querySelector("body").appendChild(link);
+    const link = document.createElement('a');
+    link.download = 'pxArt.png';
+    link.href = this.drawto.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+    document.querySelector('body').appendChild(link);
     link.click();
-    document.querySelector("body").removeChild(link);
+    document.querySelector('body').removeChild(link);
   }
 
   //end class
 }
-
 
 export default Pixelit;

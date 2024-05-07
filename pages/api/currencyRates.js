@@ -65,7 +65,7 @@ export async function getCurrencyRates() {
       `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptoSymbols}&tsyms=${OUT_CURRENCY}&api_key=${apiKey}`,
     );
 
-    console.log('formatCurrencyRates(data)', formatCurrencyRates(data))
+    console.log('formatCurrencyRates(data)', formatCurrencyRates(data));
     return formatCurrencyRates(data);
   } catch (error) {
     throw new Error('Error fetching crypto prices');

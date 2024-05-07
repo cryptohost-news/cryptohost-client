@@ -1,19 +1,14 @@
 import React from 'react';
 
+import { fetchActivitiesPaths, loadCurrentActivity } from '@/app/servises/activities/loadCurrentActivity';
 import Article from '@/entities/Article';
 import Breadcrumbs from '@/features/Breadcrumbs';
 import Layout from '@/shared/ui/Layout';
 import Section from '@/shared/ui/Section';
 import Subscribe from '@/widgets/Subscribe';
 
-import styles from './styles.module.scss';
-import {fetchActivitiesPaths, loadCurrentActivity} from "@/app/servises/activities/loadCurrentActivity";
-
-const POSTS_TO_LOAD = 6;
-
 const CurrentPost = (props) => {
-  const { activity, sameCategoryPosts } = props;
-  // const { title, category, categorySlug, publishedDate, image, slug, body } = post;
+  const { activity } = props;
 
   const paths = [
     { name: 'Главная', url: '/' },

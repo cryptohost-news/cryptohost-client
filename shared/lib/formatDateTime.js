@@ -1,19 +1,6 @@
 export const formatDateTime = (dateString, hasTime = true) => {
   const date = new Date(dateString);
-  const months = [
-    'янв',
-    'фев',
-    'мар',
-    'апр',
-    'мая',
-    'июн',
-    'июл',
-    'авг',
-    'сен',
-    'окт',
-    'ноя',
-    'дек',
-  ];
+  const months = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 
   const day = date.getDate();
   const monthIndex = date.getMonth();
@@ -21,7 +8,9 @@ export const formatDateTime = (dateString, hasTime = true) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
 
-  const formattedDate = `${day} ${months[monthIndex]} ${year}${hasTime ? `, ${hours}:${minutes < 10 ? '0' : ''}${minutes}` : 0}`;
+  const formattedDate = `${day} ${months[monthIndex]} ${year}${
+    hasTime ? `, ${hours}:${minutes < 10 ? '0' : ''}${minutes}` : 0
+  }`;
 
   return formattedDate;
 };

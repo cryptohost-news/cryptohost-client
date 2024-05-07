@@ -9,8 +9,6 @@ import Subscribe from '@/widgets/Subscribe';
 
 import styles from './styles.module.scss';
 
-const LOAD_MORE_STEP = 6;
-
 const Privacy = () => {
   const paths = [
     { name: 'Главная', url: '/' },
@@ -21,7 +19,10 @@ const Privacy = () => {
     <>
       <Head>
         <title>Политика приватности</title>
-        <meta name="description" content="Crypto-host - все, что нужно знать о блокчейн и криптовалютах простыми словами. Обучающие статьи для новичков, свежие новости, обзоры проектов и другое!" />
+        <meta
+          name="description"
+          content="Crypto-host - все, что нужно знать о блокчейн и криптовалютах простыми словами. Обучающие статьи для новичков, свежие новости, обзоры проектов и другое!"
+        />
         <meta name="image" content="/logo.png" />
       </Head>
       <Layout>

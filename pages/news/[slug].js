@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { fetchPostsPaths, loadCurrentPost } from '@/app/servises/news/loadCurrentPost';
+import loadPosts from '@/app/servises/news/loadPosts';
 import Article from '@/entities/Article';
 import Post from '@/entities/Post';
 import Breadcrumbs from '@/features/Breadcrumbs';
@@ -11,8 +13,6 @@ import Title from '@/shared/ui/Title';
 import Subscribe from '@/widgets/Subscribe';
 
 import styles from './styles.module.scss';
-import {fetchPostsPaths, loadCurrentPost} from "@/app/servises/news/loadCurrentPost";
-import loadPosts from "@/app/servises/news/loadPosts";
 
 const POSTS_TO_LOAD = 6;
 
@@ -65,14 +65,9 @@ export async function getStaticProps(context) {
   } = context;
 
   const post = await loadCurrentPost(slug);
-  const { posts: sameCategoryPosts } = await loadPosts(
-    1,
-    POSTS_TO_LOAD,
-    [post.category_id],
-    [post.id],
-  );
+  const { posts: sameCategoryPosts } = await loadPosts(1, POSTS_TO_LOAD, [post.category_id], [post.id]);
 
-  console.log('sameCategoryPosts', sameCategoryPosts)
+  console.log('sameCategoryPosts', sameCategoryPosts);
 
   return {
     props: {

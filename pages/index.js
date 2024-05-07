@@ -1,7 +1,9 @@
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import loadCategories from '@/app/servises/news/loadPosts';
+import loadPromoBanner from '@/app/servises/promo-banners/loadPromoBanner';
 import MainPost from '@/entities/MainPost';
 import Post from '@/entities/Post';
 import ButtonLink from '@/shared/ui/ButtonLink';
@@ -14,8 +16,6 @@ import { setPromoBanner } from '@/slices/promoBannerSlice';
 import CurrencyRates from '@/widgets/CurrencyRates';
 import Promo from '@/widgets/Promo';
 import Subscribe from '@/widgets/Subscribe';
-import loadPromoBanner from '@/app/servises/promo-banners/loadPromoBanner';
-import loadCategories from '@/app/servises/news/loadPosts';
 
 const POSTS_TO_SHOW = 6;
 

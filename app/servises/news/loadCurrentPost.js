@@ -1,14 +1,15 @@
 import axios from 'axios';
-import routes from "@/routes";
+
+import routes from '@/routes';
 
 export const fetchPostsPaths = async () => {
   try {
-    const {data} = await axios.get(routes.getPaths('news-posts'));
+    const { data } = await axios.get(routes.getPaths('news-posts'));
     return data;
   } catch (err) {
     console.error('Не удалось получить пути постов', err);
   }
-}
+};
 
 export const loadCurrentPost = async (slug) => {
   try {

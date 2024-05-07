@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import loadCategories from '@/app/servises/categories/loadCategories';
+import loadPosts from '@/app/servises/news/loadPosts';
 import MainPost from '@/entities/MainPost';
 import Post from '@/entities/Post';
 import Breadcrumbs from '@/features/Breadcrumbs';
@@ -13,20 +15,13 @@ import Button from '@/shared/ui/Button';
 import Layout from '@/shared/ui/Layout';
 import PageDescriptor from '@/shared/ui/PageDescriptor';
 import PostGrid from '@/shared/ui/PostGrid';
+import Preloader from '@/shared/ui/Preloader';
 import Section from '@/shared/ui/Section';
 import Title from '@/shared/ui/Title';
-import {
-  addPosts,
-  setCategories,
-  setLoadedCount,
-  setPosts,
-} from '@/slices/postsSlice';
+import { addPosts, setCategories, setLoadedCount, setPosts } from '@/slices/postsSlice';
 import Subscribe from '@/widgets/Subscribe';
 
 import styles from './styles.module.scss';
-import loadPosts from '@/app/servises/news/loadPosts';
-import loadCategories from '@/app/servises/categories/loadCategories';
-import Preloader from "@/shared/ui/Preloader";
 
 const LOAD_MORE_STEP = 6;
 
@@ -49,18 +44,13 @@ const News = (props) => {
         posts: initialPosts,
         total,
         categories: currentPostsCategories,
-      })
+      }),
     );
     dispatch(setCategories(initCategory));
     dispatch(setLoadedCount(LOAD_MORE_STEP + 1));
   }, [dispatch, initialPosts]);
 
-  const {
-    posts,
-    categories: currentCategories,
-    total: totalPosts,
-    loaded,
-  } = useSelector((state) => state.postsData);
+  const { posts, categories: currentCategories, total: totalPosts, loaded } = useSelector((state) => state.postsData);
   const mainPost = posts[0] || initialPosts[0];
 
   const { loading, loadData } = useContentLoader(
@@ -72,7 +62,7 @@ const News = (props) => {
     {
       categoryIds: JSON.stringify(currentCategories),
       excludeIds: JSON.stringify([initialPosts[initialPosts.length - 1].id]),
-    }
+    },
   );
 
   const isLoadButton = totalPosts > loaded;
@@ -92,8 +82,8 @@ const News = (props) => {
         <Section noTopPadding={true}>
           <Title color={'purple'}>Текущие новости</Title>
           <PageDescriptor>
-            Все, что актуально для крипторынка в 2023-ем и формирует тренды на
-            2024. Читайте новости ежедневно, подписывайтесь на{' '}
+            Все, что актуально для крипторынка в 2023-ем и формирует тренды на 2024. Читайте новости ежедневно,
+            подписывайтесь на{' '}
             <Link href={'https://t.me/+RS6x2BkK3zI1NWM0'} target="_blank">
               наш канал
             </Link>{' '}
