@@ -22,9 +22,11 @@ const Article = (props) => {
     setDate(formatDateTime(post.published_at));
   }, []);
 
-  const cleanedDescription = post.description
-    ? post.description.replace(/\s+/g, ' ').trim()
-    : post.body.replace(/\s+/g, ' ').trim();
+  const maxLength = 150;
+  const cleanedDescription =
+    (post.description
+      ? post.description.replace(/\s+/g, ' ').trim().substring(0, maxLength)
+      : post.body.replace(/\s+/g, ' ').trim().substring(0, maxLength)) + (post.body.length > maxLength ? '...' : '');
 
   return (
     <>
