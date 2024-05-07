@@ -50,7 +50,7 @@ const Home = (props) => {
           <CurrencyRates />
         </Section>
         <Section>
-          <Title color={'purple'}>Текущие новостивыаввавыававпавпавпапвапвап</Title>
+          <Title color={'purple'}>Текущие новости</Title>
           <PostGrid>
             <MainPost {...initialPosts[0]} directory={'news'} />
             {initialPosts.slice(1).map((post) => (
