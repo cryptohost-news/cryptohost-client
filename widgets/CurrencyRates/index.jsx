@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
-import { getCurrencyRates } from '@/pages/api/currencyRates';
+import loadCryptocurrencies from '@/app/servises/cryptocurrencies/loadCryptocurrencies';
 import Card from '@/shared/ui/Card';
 import CurrencyRateItem from '@/shared/ui/CurrencyRateItem';
 import { updateRates, updateResponseTime } from '@/slices/currencyRatesSlice';
@@ -29,7 +29,7 @@ const CurrencyRates = (props) => {
 
         dispatch(updateResponseTime(formattedTime));
 
-        const data = await getCurrencyRates();
+        const data = await loadCryptocurrencies();
         dispatch(updateRates(data));
         setLoading(false);
       } catch (err) {
