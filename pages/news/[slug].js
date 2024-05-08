@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fetchPostsPaths, loadCurrentPost } from '@/app/servises/news/loadCurrentPost';
+import { loadCurrentPost } from '@/app/servises/news/loadCurrentPost';
 import loadPosts from '@/app/servises/news/loadPosts';
 import Article from '@/entities/Article';
 import Post from '@/entities/Post';

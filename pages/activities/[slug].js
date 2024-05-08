@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fetchActivitiesPaths, loadCurrentActivity } from '@/app/servises/activities/loadCurrentActivity';
+import { loadCurrentActivity } from '@/app/servises/activities/loadCurrentActivity';
 import Article from '@/entities/Article';
 import Breadcrumbs from '@/features/Breadcrumbs';
 import Layout from '@/shared/ui/Layout';

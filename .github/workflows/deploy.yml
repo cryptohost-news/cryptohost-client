@@ -25,4 +25,5 @@ jobs:
             git pull && \
             npm i && \
             npm run build && \
+            npm run generate-sitemap && \
             pm2 restart all
