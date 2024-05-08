@@ -50,16 +50,16 @@ const CurrentPost = (props) => {
   );
 };
 
-/*export async function getStaticPaths() {
+export async function getStaticPaths() {
   const paths = await fetchPostsPaths();
 
   return {
     paths,
     fallback: 'blocking',
   };
-}*/
+}
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const {
     params: { slug },
   } = context;
@@ -74,6 +74,7 @@ export async function getServerSideProps(context) {
       post,
       sameCategoryPosts,
     },
+    revalidate: 60,
   };
 }
 
