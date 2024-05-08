@@ -1,8 +1,10 @@
+require('dotenv').config({ path: '.env.local' });
 const axios = require('axios');
 
 const fetchActivitiesPaths = async () => {
   try {
     const { data } = await axios.get(`${process.env.SERVER_URL}/api/crypto-activities/paths/public`);
+    console.log('Data from fetchActivitiesPaths:', data);
     return data;
   } catch (err) {
     console.error('Не удалось получить пути криптоактивностей', err);
@@ -12,6 +14,7 @@ const fetchActivitiesPaths = async () => {
 const fetchPostsPaths = async () => {
   try {
     const { data } = await axios.get(`${process.env.SERVER_URL}/api/news-posts/paths/public`);
+    console.log('Data from fetchPostsPaths:', data);
     return data;
   } catch (err) {
     console.error('Не удалось получить пути постов', err);
@@ -31,6 +34,8 @@ module.exports = {
         changefreq: 'daily', // Частота изменения страницы
         priority: 0.7, // Приоритет страницы
       }));
+
+      console.log('newsUrls', newsUrls, 'postsPaths', postsPaths);
 
       const activitiesUrls = actitivitsPaths.map((path) => ({
         loc: `${siteUrl}/activities/${path.params.slug}`, // Формируем URL-адрес страницы с активностью
