@@ -46,7 +46,7 @@ const getaAdditionalPaths = async (siteUrl) => {
 module.exports = {
   siteUrl: process.env.SITE_URL,
   generateRobotsTxt: true,
-  additionalPaths: async (config) => {
+  additionalPaths: async () => {
     return await getaAdditionalPaths(process.env.SERVER_URL);
   },
 };
