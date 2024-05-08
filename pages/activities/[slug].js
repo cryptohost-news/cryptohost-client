@@ -29,16 +29,16 @@ const CurrentPost = (props) => {
   );
 };
 
-export async function getStaticPaths() {
+/*export async function getStaticPaths() {
   const paths = await fetchActivitiesPaths();
 
   return {
     paths,
     fallback: 'blocking',
   };
-}
+}*/
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const {
     params: { slug },
   } = context;
