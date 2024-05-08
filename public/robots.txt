@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://crypto-host.net/
-
-# Sitemaps
-Sitemap: https://crypto-host.net/sitemap.xml
