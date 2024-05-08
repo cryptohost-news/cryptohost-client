@@ -4,7 +4,6 @@ const axios = require('axios');
 const fetchActivitiesPaths = async () => {
   try {
     const { data } = await axios.get(`${process.env.SERVER_URL}/api/crypto-activities/paths/public`);
-    // console.log('Data from fetchActivitiesPaths:', data);
     return data;
   } catch (err) {
     console.error('Не удалось получить пути криптоактивностей', err);
@@ -14,14 +13,13 @@ const fetchActivitiesPaths = async () => {
 const fetchPostsPaths = async () => {
   try {
     const { data } = await axios.get(`${process.env.SERVER_URL}/api/news-posts/paths/public`);
-    // console.log('Data from fetchPostsPaths:', data);
     return data;
   } catch (err) {
     console.error('Не удалось получить пути постов', err);
   }
 };
 
-const generateSitemap = async (siteUrl) => {
+const getaAdditionalPaths = async (siteUrl) => {
   try {
     const postsPaths = await fetchPostsPaths();
     const actitivitsPaths = await fetchActivitiesPaths();
@@ -33,12 +31,11 @@ const generateSitemap = async (siteUrl) => {
     }));
 
     const activitiesUrls = actitivitsPaths.map((path) => ({
-      loc: `${siteUrl}/activities/${path.params.slug}`, // Формируем URL-адрес страницы с активностью
-      changefreq: 'daily', // Частота изменения страницы
-      priority: 0.7, // Приоритет страницы
+      loc: `${siteUrl}/activities/${path.params.slug}`,
+      changefreq: 'daily',
+      priority: 0.7,
     }));
 
-    console.log('RESULT!!!!', [...newsUrls, ...activitiesUrls]);
     return [...newsUrls, ...activitiesUrls];
   } catch (err) {
     console.error('Ошибка при генерации sitemap:', err);
@@ -46,12 +43,10 @@ const generateSitemap = async (siteUrl) => {
   }
 };
 
-generateSitemap(process.env.SERVER_URL);
-
 module.exports = {
   siteUrl: process.env.SITE_URL,
   generateRobotsTxt: true,
   additionalPaths: async (config) => {
-    return await generateSitemap(process.env.SERVER_URL);
+    return await getaAdditionalPaths(process.env.SERVER_URL);
   },
 };
