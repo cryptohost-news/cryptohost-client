@@ -6,7 +6,7 @@ const fetchActivitiesPaths = async () => {
   console.log(`${process.env.SERVER_URL}/api/crypto-activities/paths/public`);
   try {
     const { data } = await axios.get(`${process.env.SERVER_URL}/api/crypto-activities/paths/public`);
-    console.log('Data from fetchActivitiesPaths:', data);
+    // console.log('Data from fetchActivitiesPaths:', data);
     return data;
   } catch (err) {
     // console.error('Не удалось получить пути криптоактивностей', err);
@@ -17,7 +17,7 @@ const fetchActivitiesPaths = async () => {
 const fetchPostsPaths = async () => {
   try {
     const { data } = await axios.get(`${process.env.SERVER_URL}/api/news-posts/paths/public`);
-    console.log('Data from fetchPostsPaths:', data);
+    // console.log('Data from fetchPostsPaths:', data);
     return data;
   } catch (err) {
     // console.error('Не удалось получить пути постов', err);
@@ -25,35 +25,67 @@ const fetchPostsPaths = async () => {
   }
 };
 
-async function generateSitemap({ siteUrl }) {
+// async function generateSitemap(siteUrl) {
+//   try {
+//     const postsPaths = await fetchPostsPaths();
+//     const actitivitsPaths = await fetchActivitiesPaths();
+//
+//     const newsUrls = postsPaths.map((path) => ({
+//       loc: `${siteUrl}/news/${path.params.slug}`, // Формируем URL-адрес страницы с новостью
+//       changefreq: 'daily', // Частота изменения страницы
+//       priority: 0.7, // Приоритет страницы
+//     }));
+//
+//     // console.log('newsUrls', newsUrls);
+//
+//     const activitiesUrls = actitivitsPaths.map((path) => ({
+//       loc: `${siteUrl}/activities/${path.params.slug}`, // Формируем URL-адрес страницы с активностью
+//       changefreq: 'daily', // Частота изменения страницы
+//       priority: 0.7, // Приоритет страницы
+//     }));
+//
+//     return {
+//       routes: [...newsUrls, ...activitiesUrls],
+//     };
+//   } catch (err) {
+//     console.error('Ошибка при генерации sitemap:', err);
+//     return {
+//       // Если произошла ошибка, вернем пустой sitemap
+//       routes: [], // Можно также вернуть только другие маршруты, если они доступны
+//     };
+//   }
+// }
+
+const generateSitemap = async () => {
   try {
     const postsPaths = await fetchPostsPaths();
     const actitivitsPaths = await fetchActivitiesPaths();
 
     const newsUrls = postsPaths.map((path) => ({
-      loc: `${siteUrl}/news/${path.params.slug}`, // Формируем URL-адрес страницы с новостью
+      loc: `${process.env.SERVER_URL}/news/${path.params.slug}`, // Формируем URL-адрес страницы с новостью
       changefreq: 'daily', // Частота изменения страницы
       priority: 0.7, // Приоритет страницы
     }));
 
-    console.log('newsUrls', newsUrls, 'postsPaths', postsPaths);
+    // console.log('newsUrls', newsUrls);
 
     const activitiesUrls = actitivitsPaths.map((path) => ({
-      loc: `${siteUrl}/activities/${path.params.slug}`, // Формируем URL-адрес страницы с активностью
+      loc: `${process.env.SERVER_URL}/activities/${path.params.slug}`, // Формируем URL-адрес страницы с активностью
       changefreq: 'daily', // Частота изменения страницы
       priority: 0.7, // Приоритет страницы
     }));
 
-    return {
-      routes: [...newsUrls, ...activitiesUrls],
-    };
+    return [...newsUrls, ...activitiesUrls];
   } catch (err) {
     console.error('Ошибка при генерации sitemap:', err);
-    return {
-      // Если произошла ошибка, вернем пустой sitemap
-      routes: [], // Можно также вернуть только другие маршруты, если они доступны
-    };
+    return [];
   }
-}
+};
 
-generateSitemap({ siteUrl: process.env.SERVER_URL });
+generateSitemap(process.env.SERVER_URL)
+  .then((paths) => {
+    console.log('PATHS', paths);
+  })
+  .catch((error) => {
+    console.error('An error occurred:', error);
+  });
