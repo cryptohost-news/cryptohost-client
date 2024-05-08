@@ -1,5 +1,22 @@
-const { fetchActivitiesPaths } = require('@/app/servises/activities/loadCurrentActivity');
-const { fetchPostsPaths } = require('@/app/servises/news/loadCurrentPost');
+const axios = require('axios');
+
+const fetchActivitiesPaths = async () => {
+  try {
+    const { data } = await axios.get(`${process.env.SERVER_URL}/api/crypto-activities/paths/public`);
+    return data;
+  } catch (err) {
+    console.error('Не удалось получить пути криптоактивностей', err);
+  }
+};
+
+const fetchPostsPaths = async () => {
+  try {
+    const { data } = await axios.get(`${process.env.SERVER_URL}/api/news-posts/paths/public`);
+    return data;
+  } catch (err) {
+    console.error('Не удалось получить пути постов', err);
+  }
+};
 
 module.exports = {
   siteUrl: process.env.SITE_URL,
