@@ -55,18 +55,18 @@ const CurrencyRates = (props) => {
     autoplay: true,
     autoplaySpeed: 1, // Установите скорость автопрокрутки на 0
     speed: 5000, // Установите скорость прокрутки здесь
-    // pauseOnHover: true,
+    pauseOnHover: false,
     cssEase: 'linear', // Используйте linear для плавной прокрутки
     variableWidth: true, // Включите переменную ширину слайдов
     centerMode: true, // Включите центральный режим, чтобы текущий слайд был в центре
     centerPadding: '0px', // Установите отступы, если необходимо
-    swipeToSlide: true, // Позволяет пользователю перетаскивать для переключения слайдов
+    swipeToSlide: false, // Позволяет пользователю перетаскивать для переключения слайдов
   };
 
   return (
     <div className={cl(className, styles.rates)}>
       <h3 className={styles.ratesTitle}>
-        Курсы криптовалют / обновлено {rates && updateTime.hours} <span className={styles.ratesDots}>:</span>{' '}
+        Курсы криптовалют {rates && updateTime.hours}<span className={styles.ratesDots}>:</span>
         {rates ? updateTime.minutes : '—'}
       </h3>
       {loading && !error && (

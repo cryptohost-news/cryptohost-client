@@ -1,6 +1,6 @@
 .rate {
   font-size: 18px;
-  padding: 10px 40px;
+  padding: 14px 40px;
 
   display: flex;
   align-items: center;
@@ -59,7 +59,7 @@
 @media (max-width: 576px) {
   .rate {
     font-size: 14px;
-    padding: 10px 20px;
+    padding: 16px 20px;
     &Img {
       width: 32px;
       height: 32px;
