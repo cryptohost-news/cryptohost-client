@@ -16,7 +16,7 @@ const PixelizedImage = (props) => {
     if (src && imageRef.current && imageRef.current.complete) {
       pixelizeImg(imageRef.current);
     }
-  }, [src, imageRef.current]);
+  }, []);
 
   const pixelizeImg = (img) => {
     const px = new Pixelit({
@@ -32,6 +32,14 @@ const PixelizedImage = (props) => {
       px.setScale(scale).pixelate();
     }, 800);
   };
+
+  console.log('src', src);
+
+  // return (
+  //   <Card className={cl(styles.image, className)}>
+  //     <img src={src} alt={alt} />
+  //   </Card>
+  // );
 
   return (
     <Card className={cl(styles.image, className)}>
