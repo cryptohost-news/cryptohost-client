@@ -165,3 +165,12 @@ a {
   color: var(--black-color);
   font-size: 15px;
 }
+
+
+.sample-slider .swiper-wrapper{
+  transition-timing-function: linear;
+}
+
+.swiper-slide {
+  width: fit-content !important;
+}

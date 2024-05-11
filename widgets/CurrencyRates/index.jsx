@@ -1,7 +1,10 @@
+import 'swiper/css';
+
 import cl from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Slider from 'react-slick';
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import loadCryptocurrencies from '@/app/servises/cryptocurrencies/loadCryptocurrencies';
 import Card from '@/shared/ui/Card';
@@ -13,7 +16,7 @@ import styles from './index.module.scss';
 const RATES_UPDATE_INTERVAL = 60000;
 
 const CurrencyRates = (props) => {
-  const { children, className, hasTitle = true } = props;
+  const { className, hasTitle = true } = props;
   const dispatch = useDispatch();
   const { rates, updateTime } = useSelector((state) => state.currencyRates);
   const [loading, setLoading] = useState(true); // Состояние загрузки данных
@@ -46,27 +49,11 @@ const CurrencyRates = (props) => {
     return () => clearInterval(interval);
   }, [dispatch]);
 
-  const sliderSettings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    //slidesToShow: 1,
-    //slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 1, // Установите скорость автопрокрутки на 0
-    speed: 5000, // Установите скорость прокрутки здесь
-    pauseOnHover: false,
-    cssEase: 'linear', // Используйте linear для плавной прокрутки
-    variableWidth: true, // Включите переменную ширину слайдов
-    centerMode: true, // Включите центральный режим, чтобы текущий слайд был в центре
-    centerPadding: '0px', // Установите отступы, если необходимо
-    swipeToSlide: false, // Позволяет пользователю перетаскивать для переключения слайдов
-  };
-
   return (
     <div className={cl(className, styles.rates)}>
       <h3 className={styles.ratesTitle}>
-        Курсы криптовалют {rates && updateTime.hours}<span className={styles.ratesDots}>:</span>
+        Курсы криптовалют {rates && updateTime.hours}
+        <span className={styles.ratesDots}>:</span>
         {rates ? updateTime.minutes : '—'}
       </h3>
       {loading && !error && (
@@ -81,11 +68,22 @@ const CurrencyRates = (props) => {
       )}
       {!loading && !error && (
         <Card isGridded={true} className={styles.ratesCard}>
-          <Slider {...sliderSettings}>
+          <Swiper
+            className="sample-slider"
+            modules={[Autoplay]} // added
+            autoplay={{ delay: 0 }} // added
+            loop={true}
+            speed={5000}
+            slidesPerView={'auto'}
+            noSwiping={true} // предотвращение свайпов
+            noSwipingClass={'swiper-no-swiping'} // добавление класса, чтобы предотвратить свайпы
+          >
             {rates.map((rate) => (
-              <CurrencyRateItem data={rate} key={rate.shortName} />
+              <SwiperSlide key={rate.shortName}>
+                <CurrencyRateItem data={rate} />
+              </SwiperSlide>
             ))}
-          </Slider>
+          </Swiper>
         </Card>
       )}
     </div>
