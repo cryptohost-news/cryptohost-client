@@ -70,13 +70,13 @@ const CurrencyRates = (props) => {
         <Card isGridded={true} className={styles.ratesCard}>
           <Swiper
             className="sample-slider"
-            modules={[Autoplay]} // added
-            autoplay={{ delay: 0 }} // added
+            modules={[Autoplay]}
+            autoplay={{ delay: 0 }}
             loop={true}
             speed={5000}
             slidesPerView={'auto'}
-            noSwiping={true} // предотвращение свайпов
-            noSwipingClass={'swiper-no-swiping'} // добавление класса, чтобы предотвратить свайпы
+            noSwiping={true}
+            noSwipingClass={'swiper-no-swiping'}
           >
             {rates.map((rate) => (
               <SwiperSlide key={rate.shortName}>
