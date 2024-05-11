@@ -47,6 +47,6 @@ module.exports = {
   siteUrl: process.env.SITE_URL,
   generateRobotsTxt: true,
   additionalPaths: async () => {
-    return await getaAdditionalPaths(process.env.SERVER_URL);
+    return await getaAdditionalPaths(process.env.SITE_URL);
   },
 };
