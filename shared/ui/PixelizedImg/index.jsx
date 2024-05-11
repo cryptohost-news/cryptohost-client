@@ -12,11 +12,11 @@ const PixelizedImage = (props) => {
   const imageRef = useRef();
   const canvasRef = useRef();
 
-  useEffect(() => {
-    if (src && imageRef.current && imageRef.current.complete) {
-      pixelizeImg(imageRef.current);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (src && imageRef.current && imageRef.current.complete) {
+  //     pixelizeImg(imageRef.current);
+  //   }
+  // }, []);
 
   const pixelizeImg = (img) => {
     const px = new Pixelit({
@@ -35,18 +35,18 @@ const PixelizedImage = (props) => {
 
   console.log('src', src);
 
-  // return (
-  //   <Card className={cl(styles.image, className)}>
-  //     <img src={src} alt={alt} />
-  //   </Card>
-  // );
-
   return (
     <Card className={cl(styles.image, className)}>
-      <img ref={imageRef} src={src} alt={alt} onLoad={() => pixelizeImg(imageRef.current)} />
-      <canvas ref={canvasRef}></canvas>
+      <img src={src} alt={alt} />
     </Card>
   );
+
+  // return (
+  //   <Card className={cl(styles.image, className)}>
+  //     <img ref={imageRef} src={src} alt={alt} onLoad={() => pixelizeImg(imageRef.current)} />
+  //     <canvas ref={canvasRef}></canvas>
+  //   </Card>
+  // );
 };
 
 export default PixelizedImage;
