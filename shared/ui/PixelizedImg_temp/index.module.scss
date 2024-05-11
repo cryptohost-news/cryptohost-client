@@ -1,0 +1,29 @@
+.image {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  padding-bottom: 65.25%;
+
+  // border: var(--border-black);
+  // box-shadow: var(--box-shadow-sm);
+  // border-radius: var(--br);
+
+  img {
+    // display: none
+  }
+
+
+  canvas, img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
