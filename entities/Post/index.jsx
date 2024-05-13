@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import LazyLoad from 'react-lazyload';
 import { useDispatch } from 'react-redux';
 
 import { baseUrl } from '@/routes';
@@ -22,34 +23,41 @@ const Post = (props) => {
 
   return (
     title && (
-      <div className={styles.post}>
-        <Link href={`/${directory}/${encodeURIComponent(slug)}`}>
-          <PixelizedImg className={styles.postImg} src={`${baseUrl}/${image}`} alt={''} pixelScale={11}></PixelizedImg>
-        </Link>
-        <div className={styles.postInner}>
-          <div className={styles.postInfo}>
-            {category && (
-              <>
-                <Link
-                  className={styles.postCategory}
-                  href={`/${directory}?category=${category.id}`}
-                  onClick={() => dispatch(setCategories(category.id))}
-                >
-                  {category.name}
-                </Link>
-                {' / '}
-              </>
-            )}
-            {date}
-          </div>
+      <LazyLoad height={null} offset={100}>
+        <div className={styles.post}>
           <Link href={`/${directory}/${encodeURIComponent(slug)}`}>
-            <Title type={'small'} className={styles.postTitle}>
-              {title}
-            </Title>
+            <PixelizedImg
+              className={styles.postImg}
+              src={`${baseUrl}/${image}`}
+              alt={''}
+              pixelScale={11}
+            ></PixelizedImg>
           </Link>
-          <p className={styles.postText}>{`${description.substring(0, 150)} ...`}</p>
+          <div className={styles.postInner}>
+            <div className={styles.postInfo}>
+              {category && (
+                <>
+                  <Link
+                    className={styles.postCategory}
+                    href={`/${directory}?category=${category.id}`}
+                    onClick={() => dispatch(setCategories(category.id))}
+                  >
+                    {category.name}
+                  </Link>
+                  {' / '}
+                </>
+              )}
+              {date}
+            </div>
+            <Link href={`/${directory}/${encodeURIComponent(slug)}`}>
+              <Title type={'small'} className={styles.postTitle}>
+                {title}
+              </Title>
+            </Link>
+            <p className={styles.postText}>{`${description.substring(0, 150)} ...`}</p>
+          </div>
         </div>
-      </div>
+      </LazyLoad>
     )
   );
 };
