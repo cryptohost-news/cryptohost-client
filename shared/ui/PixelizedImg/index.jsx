@@ -58,11 +58,11 @@ const PixelizedImage = (props) => {
   const { className, src, alt, pixelScale } = props;
   const canvasRef = useRef();
 
-  useEffect(() => {
-    if (src) {
-      pixelizeImg(src);
-    }
-  }, [src]);
+  // useEffect(() => {
+  //   if (src) {
+  //     pixelizeImg(src);
+  //   }
+  // }, [src]);
 
   const pixelizeImg = (imageSrc) => {
     const img = new Image();
@@ -85,9 +85,15 @@ const PixelizedImage = (props) => {
 
   return (
     <Card className={cl(styles.image, className)}>
-      <canvas ref={canvasRef} alt={alt}></canvas>
+      <img src={src} alt={alt}></img>
     </Card>
   );
+
+  // return (
+  //   <Card className={cl(styles.image, className)}>
+  //     <canvas ref={canvasRef} alt={alt}></canvas>
+  //   </Card>
+  // );
 };
 
 export default PixelizedImage;
