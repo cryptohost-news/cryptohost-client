@@ -6,63 +6,23 @@ import Card from '@/shared/ui/Card';
 
 import styles from './index.module.scss';
 
-// const PixelizedImage = (props) => {
-//   const { className, src, alt, pixelScale } = props;
-//   const imageRef = useRef();
-//   const canvasRef = useRef();
-//
-//   // useEffect(() => {
-//   //   if (src && imageRef.current && imageRef.current.complete) {
-//   //     pixelizeImg(imageRef.current);
-//   //   }
-//   // }, []);
-//
-//   useEffect(() => {
-//     if (src && imageRef.current && imageRef.current.complete) {
-//       pixelizeImg(imageRef.current);
-//     }
-//   }, []);
-//
-//   const pixelizeImg = (img) => {
-//     const px = new Pixelit({
-//       from: img,
-//       to: canvasRef.current,
-//     });
-//     let scale = pixelScale; // Начальный масштаб
-//
-//     px.setScale(scale).pixelate();
-//
-//     setInterval(() => {
-//       scale = scale === pixelScale ? pixelScale - 1 : pixelScale;
-//       px.setScale(scale).pixelate();
-//     }, 800);
-//   };
-//
-//   // console.log('src', src);
-//
-//   // return (
-//   //   <Card className={cl(styles.image, className)}>
-//   //     <img src={src} alt={alt} />
-//   //   </Card>
-//   // );
-//
-//   return (
-//     <Card className={cl(styles.image, className)}>
-//       <img ref={imageRef} src={src} alt={alt} onLoad={() => pixelizeImg(imageRef.current)} />
-//       <canvas ref={canvasRef}></canvas>
-//     </Card>
-//   );
-// };
-
 const PixelizedImage = (props) => {
   const { className, src, alt, pixelScale } = props;
   const canvasRef = useRef();
+  const intervalRef = useRef(null);
 
-  // useEffect(() => {
-  //   if (src) {
-  //     pixelizeImg(src);
-  //   }
-  // }, [src]);
+  useEffect(() => {
+    if (src) {
+      pixelizeImg(src);
+    }
+
+    // Очистка интервала при размонтировании компонента
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [src]);
 
   const pixelizeImg = (imageSrc) => {
     const img = new Image();
@@ -75,7 +35,12 @@ const PixelizedImage = (props) => {
 
       px.setScale(scale).pixelate();
 
-      setInterval(() => {
+      // Очистка предыдущего интервала перед установкой нового
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+
+      intervalRef.current = setInterval(() => {
         scale = scale === pixelScale ? pixelScale - 1 : pixelScale;
         px.setScale(scale).pixelate();
       }, 800);
@@ -85,15 +50,9 @@ const PixelizedImage = (props) => {
 
   return (
     <Card className={cl(styles.image, className)}>
-      <img src={src} alt={alt}></img>
+      <canvas ref={canvasRef} alt={alt}></canvas>
     </Card>
   );
-
-  // return (
-  //   <Card className={cl(styles.image, className)}>
-  //     <canvas ref={canvasRef} alt={alt}></canvas>
-  //   </Card>
-  // );
 };
 
 export default PixelizedImage;
