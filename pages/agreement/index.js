@@ -39,6 +39,26 @@ const Agreement = () => {
         <meta property="og:image:secure_url" content="https://crypto-host.net/logo.png" />
         <meta property="og:image:width" content="640" />
         <meta property="og:image:height" content="640" />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://crypto-host.net/agreement',
+              '@type': 'WebSite',
+              name: 'CRYPTOHOST — соглашение',
+              description:
+                'CRYPTOHOST — все, что нужно знать о блокчейн и криптовалютах простыми словами. Обучающие статьи для новичков, свежие новости, обзоры проектов и другое!',
+              url: 'https://crypto-host.net/activities',
+              image: {
+                '@type': 'ImageObject',
+                url: 'https://crypto-host.net/logo.png',
+                width: 640,
+                height: 640,
+              },
+            }),
+          }}
+        />
       </Head>
       <Layout>
         <Breadcrumbs paths={paths}></Breadcrumbs>

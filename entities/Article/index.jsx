@@ -46,6 +46,31 @@ const Article = (props) => {
         <meta property="og:image:secure_url" content={`${baseUrl}/${post.image}`} />
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="640" />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'NewsArticle', // Изменили тип на "NewsArticle"
+              headline: post.meta_title, // Используем заголовок новости
+              description: cleanedDescription, // Используем описание новости
+              url: `https://crypto-host.net/${directory}/${post.slug}`, // Устанавливаем URL страницы новости
+              image: {
+                '@type': 'ImageObject',
+                url: `${baseUrl}/${post.image}`, // Используем изображение новости
+                width: 800,
+                height: 640,
+              },
+              datePublished: post.published_at, // Устанавливаем дату публикации новости
+              dateModified: post.updated_at, // Устанавливаем дату последнего обновления новости (если есть)
+              author: {
+                '@type': 'Person',
+                name: 'cryptohost', // Устанавливаем имя автора новости
+              },
+            }),
+          }}
+        />
       </Head>
 
       <article className={cl(className, styles.article)}>
@@ -63,7 +88,7 @@ const Article = (props) => {
               {' / '}
             </>
           )}
-          {date}
+          <time>{date}</time>
         </div>
         <Link href={post.slug}>
           <PixelizedImg
