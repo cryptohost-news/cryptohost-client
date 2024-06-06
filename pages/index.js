@@ -58,6 +58,7 @@ const Home = (props) => {
         <meta property="og:image:height" content="640" />
 
         <meta name="yandex-verification" content="5cb615e26813ab0f" />
+        <meta name="google-site-verification" content="Hq89ue_ws35hdXWcSI0GR7xFGf-C_14LSChafrGLbvU" />
       </Head>
 
       <Layout isHomePage={true}>
