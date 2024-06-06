@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Script from 'next/script';
 import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 
@@ -40,10 +39,8 @@ const App = (props) => {
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
         />
 
-        {/* Скрипт Яндекс.Метрики */}
-        <Script
-          id="yandex-metrika"
-          strategy="afterInteractive"
+        <script
+          type="text/javascript"
           dangerouslySetInnerHTML={{
             __html: `
                 (function(m,e,t,r,i,k,a){
@@ -64,17 +61,9 @@ const App = (props) => {
               `,
           }}
         />
-        <noscript>
-          <div>
-            <img src="https://mc.yandex.ru/watch/97506550" style={{ position: 'absolute', left: '-9999px' }} alt="" />
-          </div>
-        </noscript>
 
-        {/* Скрипт Google Analytics */}
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8LQ4WW045"></Script>
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8LQ4WW045"></script>
+        <script
           dangerouslySetInnerHTML={{
             __html: `
                 window.dataLayer = window.dataLayer || [];
