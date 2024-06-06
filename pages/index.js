@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -77,6 +78,22 @@ const Home = (props) => {
           }}
         />
       </Head>
+
+      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=G-Q8LQ4WW045`} />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-Q8LQ4WW045');
+          `,
+        }}
+      />
+
       <Layout isHomePage={true}>
         <Section>
           <Promo />
