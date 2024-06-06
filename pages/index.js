@@ -57,42 +57,7 @@ const Home = (props) => {
         <meta property="og:image:secure_url" content="https://crypto-host.net/logo.png" />
         <meta property="og:image:width" content="640" />
         <meta property="og:image:height" content="640" />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebSite',
-              name: 'CRYPTOHOST — крипто-блокчейн медиа',
-              description:
-                'CRYPTOHOST — все, что нужно знать о блокчейн и криптовалютах простыми словами. Обучающие статьи для новичков, свежие новости, обзоры проектов и другое!',
-              url: 'https://crypto-host.net/',
-              image: {
-                '@type': 'ImageObject',
-                url: 'https://crypto-host.net/logo.png',
-                width: 640,
-                height: 640,
-              },
-            }),
-          }}
-        />
       </Head>
-
-      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=G-Q8LQ4WW045`} />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-Q8LQ4WW045');
-          `,
-        }}
-      />
 
       <Layout isHomePage={true}>
         <Section>
