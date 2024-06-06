@@ -56,6 +56,8 @@ const Home = (props) => {
         <meta property="og:image:secure_url" content="https://crypto-host.net/logo.png" />
         <meta property="og:image:width" content="640" />
         <meta property="og:image:height" content="640" />
+
+        <meta name="yandex-verification" content="5cb615e26813ab0f" />
       </Head>
 
       <Layout isHomePage={true}>
